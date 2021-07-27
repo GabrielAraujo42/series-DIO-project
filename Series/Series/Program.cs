@@ -30,6 +30,9 @@ namespace Series
                     case "5":
                         VisualizeDetails();
                         break;
+                    case "6":
+                        FilterByGenre();
+                        break;
                     case "C":
                         Console.Clear();
                         break;
@@ -131,6 +134,48 @@ namespace Series
             Console.Write(movie);
         }
 
+        static void FilterByGenre()
+        {
+            foreach (int i in Enum.GetValues<Genre>())
+            {
+                Console.WriteLine("{0} - {1}", i, Enum.GetName(typeof(Genre), i));
+            }
+            Console.Write("Select a movie genre from list above: ");
+            int genre = ReceiveGenreInput();
+            if (genre < 0) return;
+
+            var list = repository.GetList();
+
+            if (list.Count == 0)
+            {
+                Console.WriteLine("Catalog is currently empty.");
+                return;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Catalog of " + Enum.GetName(typeof(Genre), genre) + " titles:");
+
+            int moviesInGenre = 0;
+            foreach (var item in list)
+            {
+                if (item.GetGenre() == genre)
+                {
+                    moviesInGenre++;
+                    Console.Write("#ID {0} - {1}", item.GetId(), item.GetTitle());
+                    if (item.GetWasRemoved())
+                    {
+                        Console.Write(" (Removed from catalog)");
+                    }
+                    Console.WriteLine();
+                }
+            }
+            if(moviesInGenre == 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine("No movies of this genre in catalog.");
+            }
+        }
+
         static string GetUserInput()
         {
             Console.WriteLine();
@@ -142,6 +187,7 @@ namespace Series
             Console.WriteLine("3- Update existing item");
             Console.WriteLine("4- Remove item from catalog");
             Console.WriteLine("5- Visualize item details");
+            Console.WriteLine("6- Filter catalog by genre");
             Console.WriteLine("C- Clear screen");
             Console.WriteLine("X- Exit application");
             Console.WriteLine();

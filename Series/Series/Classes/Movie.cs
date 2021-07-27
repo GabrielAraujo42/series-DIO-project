@@ -39,14 +39,19 @@ namespace Series.Classes
             WasRemoved = true;
         }
 
+        public int GetId()
+        {
+            return Id;
+        }
+
         public string GetTitle()
         {
             return Title;
         }
 
-        public int GetId()
+        public int GetGenre()
         {
-            return Id;
+            return (int)Genre;
         }
 
         public bool GetWasRemoved()
