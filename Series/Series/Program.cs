@@ -80,10 +80,18 @@ namespace Series
             Console.WriteLine("Update a movie's details:");
             Console.Write("Insert ID of movie to be updated: ");
 
-            int idInput = int.Parse(Console.ReadLine());
+            int idInput = CheckIntInput(Console.ReadLine());
+            if (!repository.CheckId(idInput))
+            {
+                ErrorMessage();
+                return;
+            }
 
             Movie updatedMovie = MovieDetailsInput(idInput);
             repository.Update(idInput, updatedMovie);
+
+            Console.WriteLine();
+            Console.WriteLine("Movie successfully updated.");
         }
 
         static void RemoveItem()
@@ -91,9 +99,17 @@ namespace Series
             Console.WriteLine("Remove a movie:");
             Console.Write("Insert ID of movie to be removed: ");
 
-            int idInput = int.Parse(Console.ReadLine());
+            int idInput = CheckIntInput(Console.ReadLine());
+            if (!repository.CheckId(idInput))
+            {
+                ErrorMessage();
+                return;
+            }
 
             repository.Remove(idInput);
+
+            Console.WriteLine();
+            Console.WriteLine("Movie successfully removed.");
         }
 
         static void VisualizeDetails()
@@ -101,7 +117,12 @@ namespace Series
             Console.WriteLine("Visualize a movie's details:");
             Console.Write("Insert ID of movie to be visualized: ");
 
-            int idInput = int.Parse(Console.ReadLine());
+            int idInput = CheckIntInput(Console.ReadLine());
+            if (!repository.CheckId(idInput))
+            {
+                ErrorMessage();
+                return;
+            }
             var movie = repository.GetById(idInput);
 
             Console.WriteLine();
@@ -148,6 +169,25 @@ namespace Series
 
             Movie newMovie = new Movie(id, (Genre)genre, name, desc, year);
             return newMovie;
+        }
+
+        static int CheckIntInput(string value)
+        {
+            if(int.TryParse(value, out int result))
+            {
+                return result;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        static void ErrorMessage()
+        {
+            Console.WriteLine("#");
+            Console.WriteLine("# Invalid command or ID.");
+            Console.WriteLine("#");
         }
     }
 }

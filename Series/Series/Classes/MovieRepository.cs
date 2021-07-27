@@ -6,36 +6,41 @@ namespace Series.Classes
 {
     public class MovieRepository : IRepository<Movie>
     {
-        List<Movie> seriesList = new List<Movie>();
+        List<Movie> moviesList = new List<Movie>();
 
         public List<Movie> GetList()
         {
-            return seriesList;
+            return moviesList;
         }
 
         public Movie GetById(int id)
         {
-            return seriesList[id];
+            return moviesList[id];
         }
 
         public void Insert(Movie value)
         {
-            seriesList.Add(value);
+            moviesList.Add(value);
         }
 
         public void Remove(int id)
         {
-            seriesList[id].Remove();
+            moviesList[id].Remove();
         }
 
         public void Update(int id, Movie value)
         {
-            seriesList[id] = value;
+            moviesList[id] = value;
         }
 
         public int NextId()
         {
-            return seriesList.Count;
+            return moviesList.Count;
+        }
+
+        public bool CheckId(int id)
+        {
+            return 0 <= id && id < moviesList.Count;
         }
     }
 }
