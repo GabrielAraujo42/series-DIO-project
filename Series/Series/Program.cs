@@ -72,6 +72,7 @@ namespace Series
             Console.WriteLine("Insert new movie:");
 
             Movie newMovie = MovieDetailsInput(repository.NextId());
+            if (newMovie == null) return;
             repository.Insert(newMovie);
         }
 
@@ -88,6 +89,7 @@ namespace Series
             }
 
             Movie updatedMovie = MovieDetailsInput(idInput);
+            if (updatedMovie == null) return;
             repository.Update(idInput, updatedMovie);
 
             Console.WriteLine();
@@ -156,13 +158,19 @@ namespace Series
                 Console.WriteLine("{0} - {1}", i, Enum.GetName(typeof(Genre), i));
             }
             Console.Write("Select a movie genre from list above: ");
-            int genre = int.Parse(Console.ReadLine());
+            int genre = ReceiveGenreInput();
+            if (genre < 0) return null;
 
             Console.Write("Enter the name of the movie: ");
             string name = Console.ReadLine();
 
             Console.Write("Enter the year the movie was published: ");
-            int year = int.Parse(Console.ReadLine());
+            int year = CheckIntInput(Console.ReadLine());
+            if(year < 0)
+            {
+                ErrorMessage();
+                return null;
+            }
 
             Console.Write("Enter the movie's description: ");
             string desc = Console.ReadLine();
@@ -183,11 +191,22 @@ namespace Series
             }
         }
 
+        static int ReceiveGenreInput()
+        {
+            int genre = CheckIntInput(Console.ReadLine());
+            if(Enum.IsDefined(typeof(Genre), genre))
+            {
+                return genre;
+            }
+
+            ErrorMessage();
+            return -1;
+        }
+
         static void ErrorMessage()
         {
-            Console.WriteLine("#");
-            Console.WriteLine("# Invalid command or ID.");
-            Console.WriteLine("#");
+            Console.WriteLine();
+            Console.WriteLine("# Invalid input or ID.");
         }
     }
 }
