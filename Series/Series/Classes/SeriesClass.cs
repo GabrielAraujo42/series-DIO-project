@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Series
+namespace Series.Classes
 {
     public class SeriesClass : BaseEntity
     {
