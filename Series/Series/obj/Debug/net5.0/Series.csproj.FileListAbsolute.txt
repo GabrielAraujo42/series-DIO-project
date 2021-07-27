@@ -1,0 +1,16 @@
+D:\Repository\Z_Dotnet\series-DIO-project\Series\Series\bin\Debug\net5.0\Series.exe
+D:\Repository\Z_Dotnet\series-DIO-project\Series\Series\bin\Debug\net5.0\Series.deps.json
+D:\Repository\Z_Dotnet\series-DIO-project\Series\Series\bin\Debug\net5.0\Series.runtimeconfig.json
+D:\Repository\Z_Dotnet\series-DIO-project\Series\Series\bin\Debug\net5.0\Series.runtimeconfig.dev.json
+D:\Repository\Z_Dotnet\series-DIO-project\Series\Series\bin\Debug\net5.0\Series.dll
+D:\Repository\Z_Dotnet\series-DIO-project\Series\Series\bin\Debug\net5.0\ref\Series.dll
+D:\Repository\Z_Dotnet\series-DIO-project\Series\Series\bin\Debug\net5.0\Series.pdb
+D:\Repository\Z_Dotnet\series-DIO-project\Series\Series\obj\Debug\net5.0\Series.csproj.AssemblyReference.cache
+D:\Repository\Z_Dotnet\series-DIO-project\Series\Series\obj\Debug\net5.0\Series.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repository\Z_Dotnet\series-DIO-project\Series\Series\obj\Debug\net5.0\Series.AssemblyInfoInputs.cache
+D:\Repository\Z_Dotnet\series-DIO-project\Series\Series\obj\Debug\net5.0\Series.AssemblyInfo.cs
+D:\Repository\Z_Dotnet\series-DIO-project\Series\Series\obj\Debug\net5.0\Series.csproj.CoreCompileInputs.cache
+D:\Repository\Z_Dotnet\series-DIO-project\Series\Series\obj\Debug\net5.0\Series.dll
+D:\Repository\Z_Dotnet\series-DIO-project\Series\Series\obj\Debug\net5.0\ref\Series.dll
+D:\Repository\Z_Dotnet\series-DIO-project\Series\Series\obj\Debug\net5.0\Series.pdb
+D:\Repository\Z_Dotnet\series-DIO-project\Series\Series\obj\Debug\net5.0\Series.genruntimeconfig.cache

@@ -27,7 +27,16 @@ namespace Series.Classes
             value += "Name: " + Title + Environment.NewLine;
             value += "Description: " + Description + Environment.NewLine;
             value += "Year: " + Year + Environment.NewLine;
+            if (WasRemoved)
+            {
+                value += "This item was removed from the catalog." + Environment.NewLine;
+            }
             return value;
+        }
+
+        public void Remove()
+        {
+            WasRemoved = true;
         }
 
         public string GetTitle()
@@ -40,9 +49,9 @@ namespace Series.Classes
             return Id;
         }
 
-        public void Remove()
+        public bool GetWasRemoved()
         {
-            WasRemoved = true;
+            return WasRemoved;
         }
     }
 }
