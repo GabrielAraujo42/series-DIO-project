@@ -1,4 +1,5 @@
 ﻿using System;
+using Series.Classes;
 
 namespace Series
 {

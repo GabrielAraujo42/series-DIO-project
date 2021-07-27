@@ -10,6 +10,7 @@
         Horror = 6,
         Syfy = 7,
         Documentary = 8,
-        Musical = 9
+        Musical = 9,
+        Animation = 10
     }
 }

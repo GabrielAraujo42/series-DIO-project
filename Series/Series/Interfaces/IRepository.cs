@@ -4,7 +4,7 @@ namespace Series.Interfaces
 {
     interface IRepository<T>
     {
-        List<T> List();
+        List<T> GetList();
         T GetById(int id);
         void Insert(T value);
         void Remove(int id);

@@ -2,20 +2,22 @@
 
 namespace Series.Classes
 {
-    public class SeriesClass : BaseEntity
+    public class Movie : BaseEntity
     {
-        Genre Genre { get; set; }
-        string Title { get; set; }
-        string Description { get; set; }
-        int Year { get; set; }
+        protected Genre Genre { get; set; }
+        protected string Title { get; set; }
+        protected string Description { get; set; }
+        protected int Year { get; set; }
+        protected bool WasRemoved { get; set; }
 
-        public SeriesClass(int id, Genre genre, string name, string desc, int year)
+        public Movie(int id, Genre genre, string name, string desc, int year)
         {
             this.Id = id;
             this.Genre = genre;
             this.Title = name;
             this.Description = desc;
             this.Year = year;
+            this.WasRemoved = false;
         }
 
         public override string ToString()
@@ -36,6 +38,11 @@ namespace Series.Classes
         public int GetId()
         {
             return Id;
+        }
+
+        public void Remove()
+        {
+            WasRemoved = true;
         }
     }
 }
