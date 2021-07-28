@@ -53,15 +53,19 @@ namespace Series
 
             var list = repository.GetList();
 
+            // Executes if catalog is empty
             if(list.Count == 0)
             {
                 Console.WriteLine("Catalog is currently empty.");
                 return;
             }
 
-            foreach(var item in list)
+            // Lists each item from catalog
+            foreach (var item in list)
             {
                 Console.Write("#ID {0} - {1}", item.GetId(), item.GetTitle());
+                // Executes if item was removed from catalog
+                // Removed items can be updated
                 if (item.GetWasRemoved())
                 {
                     Console.Write(" (Removed from catalog)");
@@ -74,7 +78,9 @@ namespace Series
         {
             Console.WriteLine("Insert new movie:");
 
+            // Calls function to get player input that returns the Movie object
             Movie newMovie = MovieDetailsInput(repository.NextId());
+            // If some input was invalid the Movie object is null
             if (newMovie == null) return;
             repository.Insert(newMovie);
         }
@@ -84,14 +90,19 @@ namespace Series
             Console.WriteLine("Update a movie's details:");
             Console.Write("Insert ID of movie to be updated: ");
 
+            // Function that checks if string input can be parsed as int
+            // Returns -1 if parsing isn't possible
             int idInput = CheckIntInput(Console.ReadLine());
+            // Function that checks if id is in list's scope
             if (!repository.CheckId(idInput))
             {
                 ErrorMessage();
                 return;
             }
 
+            // Calls function to get player input that returns the Movie object
             Movie updatedMovie = MovieDetailsInput(idInput);
+            // If some input was invalid the Movie object is null
             if (updatedMovie == null) return;
             repository.Update(idInput, updatedMovie);
 
@@ -104,7 +115,10 @@ namespace Series
             Console.WriteLine("Remove a movie:");
             Console.Write("Insert ID of movie to be removed: ");
 
+            // Function that checks if string input can be parsed as int
+            // Returns -1 if parsing isn't possible
             int idInput = CheckIntInput(Console.ReadLine());
+            // Function that checks if id is in list's scope
             if (!repository.CheckId(idInput))
             {
                 ErrorMessage();
@@ -122,7 +136,10 @@ namespace Series
             Console.WriteLine("Visualize a movie's details:");
             Console.Write("Insert ID of movie to be visualized: ");
 
+            // Function that checks if string input can be parsed as int
+            // Returns -1 if parsing isn't possible
             int idInput = CheckIntInput(Console.ReadLine());
+            // Function that checks if id is in list's scope
             if (!repository.CheckId(idInput))
             {
                 ErrorMessage();
@@ -141,6 +158,8 @@ namespace Series
                 Console.WriteLine("{0} - {1}", i, Enum.GetName(typeof(Genre), i));
             }
             Console.Write("Select a movie genre from list above: ");
+            // Function that checks if string input is int and in Genre's range
+            // Returns -1 in case of wrong input
             int genre = ReceiveGenreInput();
             if (genre < 0) return;
 
@@ -155,21 +174,22 @@ namespace Series
             Console.WriteLine();
             Console.WriteLine("Catalog of " + Enum.GetName(typeof(Genre), genre) + " titles:");
 
-            int moviesInGenre = 0;
+            // Variable to show message in case no movies of the selected genre exist
+            bool moviesInGenre = false;
             foreach (var item in list)
             {
                 if (item.GetGenre() == genre)
                 {
-                    moviesInGenre++;
                     Console.Write("#ID {0} - {1}", item.GetId(), item.GetTitle());
                     if (item.GetWasRemoved())
                     {
                         Console.Write(" (Removed from catalog)");
                     }
                     Console.WriteLine();
+                    moviesInGenre = true;
                 }
             }
-            if(moviesInGenre == 0)
+            if(!moviesInGenre)
             {
                 Console.WriteLine();
                 Console.WriteLine("No movies of this genre in catalog.");
@@ -192,6 +212,8 @@ namespace Series
             Console.WriteLine("X- Exit application");
             Console.WriteLine();
 
+            // This input doesn't need check because the default in the switch
+            // already handles the exceptions
             string input = Console.ReadLine().ToUpper();
             Console.WriteLine();
             return input;
@@ -204,6 +226,8 @@ namespace Series
                 Console.WriteLine("{0} - {1}", i, Enum.GetName(typeof(Genre), i));
             }
             Console.Write("Select a movie genre from list above: ");
+            // Function that checks if string input is int and in Genre's range
+            // Returns -1 in case of wrong input
             int genre = ReceiveGenreInput();
             if (genre < 0) return null;
 
@@ -211,6 +235,7 @@ namespace Series
             string name = Console.ReadLine();
 
             Console.Write("Enter the year the movie was published: ");
+            // Checks if string can be parsed as int
             int year = CheckIntInput(Console.ReadLine());
             if(year < 0)
             {
@@ -249,6 +274,7 @@ namespace Series
             return -1;
         }
 
+        // Displays an error message in case of invalid input
         static void ErrorMessage()
         {
             Console.WriteLine();

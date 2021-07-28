@@ -3,6 +3,7 @@ using Series.Interfaces;
 
 namespace Series.Classes
 {
+    // Class to control the Program's catalog of movies
     public class MovieRepository : IRepository<Movie>
     {
         List<Movie> moviesList = new List<Movie>();
@@ -37,6 +38,7 @@ namespace Series.Classes
             return moviesList.Count;
         }
 
+        // Function to check if id is in the list's range
         public bool CheckId(int id)
         {
             return 0 <= id && id < moviesList.Count;

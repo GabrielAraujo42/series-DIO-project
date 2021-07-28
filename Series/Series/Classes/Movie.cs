@@ -4,11 +4,12 @@ namespace Series.Classes
 {
     public class Movie : BaseEntity
     {
-        protected Genre Genre { get; set; }
-        protected string Title { get; set; }
-        protected string Description { get; set; }
-        protected int Year { get; set; }
-        protected bool WasRemoved { get; set; }
+        Genre Genre { get; set; }
+        string Title { get; set; }
+        string Description { get; set; }
+        int Year { get; set; }
+        // Property to control if Movie was removed from the Program's catalog
+        bool WasRemoved { get; set; }
 
         public Movie(int id, Genre genre, string name, string desc, int year)
         {
